@@ -1,0 +1,16 @@
+---
+- name: my playbook for task1
+  remote_user: apache
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: install httpd
+    yum:
+      name: httpd
+      state: latest
+  - name: ensure that httpd has started
+    service: 
+      name: httpd
+      state: started
+...
