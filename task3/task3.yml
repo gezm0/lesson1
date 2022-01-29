@@ -18,5 +18,5 @@
       state: present
   - name: Executing config generation
     command:
-      cmd: grub2-mkconfig
+      cmd: grub2-mkconfig –o /boot/grub2/grub.cfg
 ...
