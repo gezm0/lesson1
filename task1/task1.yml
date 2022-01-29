@@ -12,10 +12,11 @@
       state: started
   - name: Write string to file
     copy:
-      content: "Welcome to my web server"
+      content: "Welcome to my web server\n"
       dest: /var/www/html/index.html
   - name: Check firewall for http
     firewalld:
-      port: 80
+      port: 80/tcp
       state: enabled
+      permanent: true
 ...
