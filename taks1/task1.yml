@@ -1,16 +1,23 @@
 ---
-- name: my playbook for task1
-  remote_user: apache
-  become: yes
-  become_method: sudo
-
+- name: My playbook for task1
   tasks:
-  - name: install httpd
+  - name: Install httpd
     yum:
       name: httpd
       state: latest
-  - name: ensure that httpd has started
+  - name: Ensure that httpd has started
     service: 
       name: httpd
       state: started
+  - name: Write string to file
+    remote_user: apache
+    become: yes
+    become_method: sudo
+    copy:
+      content: "Welcome to my web server"
+      dest: /var/www/html/index.html
+  - name: Check firewall for http
+    firewalld:
+      port: 80
+      state: enabled
 ...
