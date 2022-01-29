@@ -1,5 +1,6 @@
 ---
 - name: My playbook for task1
+  hosts: nodes
   tasks:
   - name: Install httpd
     yum:
