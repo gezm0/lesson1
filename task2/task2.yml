@@ -10,6 +10,10 @@
     service:
       name: httpd
       state: stopped
+  - name: Ensure that httpd service disabled
+    service: 
+      name: httpd
+      enabled: no
   - name: Remove httpd package
     yum:
       name: httpd

@@ -6,10 +6,15 @@
     yum:
       name: httpd
       state: latest
+  - name: Ensure that httpd service enabled
+    service: 
+      name: httpd
+      enabled: yes
   - name: Ensure that httpd has started
     service: 
       name: httpd
       state: started
+      enabled: yes
   - name: Write string to file
     copy:
       content: "Welcome to my web server\n"
