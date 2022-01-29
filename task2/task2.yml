@@ -1,0 +1,22 @@
+---
+- name: My playbook for task2
+  hosts: nodes
+  tasks:
+  - name: Delete file for httpd service
+    file:
+      path: /var/www/html/index.html
+      state: absent
+  - name: Stop httpd service
+    service:
+      name: httpd
+      state: stopped
+  - name: Remove httpd package
+    yum:
+      name: httpd
+      state: absent
+  - name: Check firewall for http
+    firewalld:
+      port: 80/tcp
+      state: disabled
+      permanent: true
+...
