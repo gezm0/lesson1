@@ -1,0 +1,22 @@
+---
+- name: My playbook for task3
+  hosts: nodes
+  tasks:
+  - name: Adding net.ifnames=0 parameter to grub2 config
+    lineinfile:
+      path: /etc/default/grub
+      regexp: '^GRUB_CMDLINE_LINUX="'
+      insertafter: '^GRUB_CMDLINE_LINUX="'
+      line: net.ifnames=0
+      state: present
+  - name: Adding biosdevname=0 parameter to grub2 config
+    lineinfile:
+      path: /etc/default/grub
+      regexp: '^GRUB_CMDLINE_LINUX="'
+      insertafter: '^GRUB_CMDLINE_LINUX="'
+      line: biosdevname=0
+      state: present
+  - name: Executing config generation
+    command:
+      cmd: grub2-mkconfig
+...
