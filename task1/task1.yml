@@ -20,10 +20,11 @@
         path: /var/www/html
         state: directory
         owner: apache
+        group: apache
         mode: '0755'
   - name: Write index file to httpd service root
     copy:
-      content: "Welcome to my web server\n"
+      content: "<html><body><br><br><center><h1>Welcome to my web server</h1></center></body></html>\n"
       dest: /var/www/html/index.html
       owner: apache
       group: apache
