@@ -6,11 +6,7 @@
     yum:
       name: httpd
       state: latest
-  - name: Ensure that httpd service enabled
-    service: 
-      name: httpd
-      enabled: yes
-  - name: Ensure that httpd service has started
+  - name: Ensure httpd service enabled and started
     service: 
       name: httpd
       state: started
@@ -20,18 +16,20 @@
         path: /var/www/html
         state: directory
         owner: apache
-        group: apache
         mode: '0755'
   - name: Write index file to httpd service root
     copy:
       content: "<html><body><br><br><center><h1>Welcome to my web server</h1></center></body></html>\n"
       dest: /var/www/html/index.html
       owner: apache
-      group: apache
       mode: '0644'
-  - name: Check firewall for http
+  - name: Check firewall for http is enabled
     firewalld:
       port: 80/tcp
       state: enabled
       permanent: true
+  - name: Restart the firewalld service to load in the firewall changes
+    service: 
+      name: firewalld 
+      state: restarted
 ...
