@@ -2,7 +2,7 @@
 - name: My playbook for task1
   hosts: nodes
   tasks:
-  - name: Install httpd
+  - name: Install httpd server
     yum:
       name: httpd
       state: latest
@@ -10,15 +10,24 @@
     service: 
       name: httpd
       enabled: yes
-  - name: Ensure that httpd has started
+  - name: Ensure that httpd service has started
     service: 
       name: httpd
       state: started
       enabled: yes
-  - name: Write string to file
+  - name: Create document root for httpd service
+      file:
+        path: /var/www/html
+        state: directory
+        owner: apache
+        mode: '0755'
+  - name: Write index file to httpd service root
     copy:
       content: "Welcome to my web server\n"
       dest: /var/www/html/index.html
+      owner: apache
+      group: apache
+      mode: '0644'
   - name: Check firewall for http
     firewalld:
       port: 80/tcp
