@@ -25,7 +25,7 @@
       state: absent
   - name: Check firewall for http
     firewalld:
-      port: 80/tcp
+      service: http
       state: disabled
       permanent: true
   - name: Restart the firewalld service to load in the firewall changes

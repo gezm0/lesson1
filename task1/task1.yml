@@ -25,7 +25,7 @@
       mode: '0644'
   - name: Check firewall for http is enabled
     firewalld:
-      port: 80/tcp
+      service: http
       state: enabled
       permanent: true
   - name: Restart the firewalld service to load in the firewall changes
