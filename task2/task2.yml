@@ -10,10 +10,10 @@
 #    service: 
 #      name: httpd
 #      enabled: no
-#  - name: Delete index file for httpd service
-#    file:
-#      path: /var/www/html/index.html
-#      state: absent
+  - name: Delete index file for httpd service
+    file:
+      path: /var/www/html/index.html
+      state: absent
 ## in we need completely remove document root
 #  - name: Remove document root for httpd service
 #      file:
