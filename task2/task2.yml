@@ -2,19 +2,6 @@
 - name: My playbook for task2
   hosts: nodes
   tasks:
-#  - name: Stop httpd service
-#    service:
-#      name: httpd
-#      state: stopped
-#  - name: Ensure httpd service disabled
-#    service: 
-#      name: httpd
-#      enabled: no
-## if we need completely remove document root
-#  - name: Remove document root for httpd service
-#      file:
-#        path: /var/www/html
-#        state: absent
   - name: Remove httpd package
     yum:
       name: httpd
